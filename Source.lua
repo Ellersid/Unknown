@@ -14,7 +14,7 @@ end
 
 local cracker=RBX.FE.BYTES("5265706C69636174655369676E616C")
 
-local fake=pkt.new("INIT")
-fake:Send()
+local raknet=pkt.new("INIT")
+raknet:Send()
 
 cracker.Parent=r
