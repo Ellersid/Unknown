@@ -671,8 +671,6 @@ end)
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local rq = ReplicatedStorage:WaitForChild("HDAdminHDClient").Signals.RequestCommandSilent
 local RunService = game:GetService("RunService")
-local rotatetypeshii = Vector3.new(0, 1, 0).Unit
-local skypartrotation = 0
 local player = game.Players.LocalPlayer
     local char = player.Character
     local tool
@@ -686,7 +684,6 @@ local player = game.Players.LocalPlayer
             tool = v.Parent
         end
     end
-    --craaa
     remote = tool.SyncAPI.ServerEndpoint
     function _(args)
         remote:InvokeServer(unpack(args))
@@ -964,115 +961,6 @@ function ClonePart(part,parent)
 
     return remote:InvokeServer(unpack(args))
 end
-    function Sky(id)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local RequestCommandSilent = ReplicatedStorage:WaitForChild("HDAdminHDClient").Signals.RequestCommandSilent
-    
-    
-
-local function findBuildingTools()
-    local player = game:GetService("Players").LocalPlayer
-
-    for _, item in ipairs(player.Character:GetChildren()) do
-        if item:IsA("Tool") and item:FindFirstChild("SyncAPI") then
-            return item
-        end
-    end
-
-    for _, item in ipairs(player.Backpack:GetChildren()) do
-        if item:IsA("Tool") and item:FindFirstChild("SyncAPI") then
-            return item
-        end
-    end
-
-    return nil
-end
-
-local buildingTools = findBuildingTools()
-if not buildingTools then
-    warn("btools not found")
-    return
-end
-
-local syncAPI        = buildingTools:FindFirstChild("SyncAPI")
-local serverEndpoint = syncAPI and syncAPI:FindFirstChild("ServerEndpoint")
-
-if not serverEndpoint then
-    warn("btools not found")
-    return
-end
-
-local skyInstance = workspace.Terrain:FindFirstChild("Sky") or workspace:FindFirstChild("Sky")
-if not skyInstance then
-
-print"ok"
-end
-spawn(function()
-DestroyPart(skyInstance)
-end)
-local success, result
-if serverEndpoint:IsA("RemoteFunction") then
-    success, result = pcall(function()
-        return serverEndpoint:InvokeServer(unpack(args))
-    end)
-else
-
-    serverEndpoint:FireServer(unpack(args))
-    success = true
-end
-
-if success then
-    
-print"yay"
-    
-end
-        e = char.HumanoidRootPart.CFrame.x
-        f = char.HumanoidRootPart.CFrame.y
-        g = char.HumanoidRootPart.CFrame.z
-                mhm = CFrame.new(math.floor(e),math.floor(f),math.floor(g)) + Vector3.new(0,-5,0)
-                v = remote:InvokeServer("CreatePart","Normal",mhm,char)
-                task.spawn(function()
-                SetName(v,"johnbeep")
-                end)
-                task.spawn(function()
-                AddMesh(v)
-                end)
-                task.spawn(function()
-                rq:InvokeServer(";time 0")
-                end)
-                task.spawn(function()
-                Resize(v,Vector3.new(0,0,0),v.CFrame)
-                end)
-                task.spawn(function()
-                SetMesh(v,"1527559")
-                end)
-                task.spawn(function()
-                MeshColor(v,vector.create(2,0,0))
-                end)
-                task.spawn(function()
-                SetTexture(v,id)
-                end)
-                task.spawn(function()
-           MeshResize(v,Vector3.new(-3000,-1000,-3000))
-                end)
-                task.spawn(function()
-                SetLocked(v,true)
-                end)
-
-local rotationAngle = 5
-    local rotationSpeed = math.rad(20)
-    RunService.Heartbeat:Connect(function(deltaTime)
-        rotationAngle = rotationAngle + rotationSpeed * deltaTime
-        local rotation = CFrame.Angles(0, rotationAngle, 0)
-        local cf = CFrame.new(v.Position) * rotation
-        
-        task.spawn(function()
-            MovePart(v, cf)
-        end)
-    end)
-
-            end
-Sky("1529455")
 
 while true do
 	wait(0.1)
@@ -1088,14 +976,7 @@ end)
 task.spawn(function()
 SetTrans(bg,1)
 end)
-ClonePart(character.johnbeep,workspace.Terrain)
-                spawn(function()
-MeshColor(workspace.Terrain.johnbeep,vector.create(0,0,0))
-                end)
-task.spawn(function()
-MeshResize(workspace.Terrain.johnbeep,Vector3.new(-50000,-50000,-50000))
-                end)
-RequestCommand:InvokeServer(";explode others")
+RequestCommand:InvokeServer(";explode all")
 RequestCommand:InvokeServer(";music 17717379222")
 RequestCommand:InvokeServer(";volume 10")
 wait(4)
@@ -1103,8 +984,6 @@ wait(4)
 			RequestCommand:InvokeServer(";pitch 0.5")
 			RequestCommand:InvokeServer(";volume 3")
       wait(0.8)
-      RequestCommand:InvokeServer(";fogcolor black")
-RequestCommand:InvokeServer(";fog 3000")
 			break
 		end
 	end
